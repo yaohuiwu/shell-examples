@@ -48,7 +48,8 @@ mkdir mysql
 
 ###################官方文档的安装步骤#################
 cd mysql
-tar zxvf $1/mysql-$VERSION-$OS.tar.gz
+echo "正在解压..."
+tar zxf $1/mysql-$VERSION-$OS.tar.gz
 ln -s mysql-$VERSION-$OS mysql
 cd mysql
 chown -R mysql .
@@ -56,6 +57,20 @@ chgrp -R mysql .
 scripts/mysql_install_db --user=mysql
 chown -R root .
 chown -R mysql data
+
+echo "配置my.cnf"
+if [ ! -e my.cnf ] ; then 
+	echo "my.cnf不存在"
+	exit 0
+fi
+sed -i '/\[mysqld\]/ a\bind-address=0.0.0.0 \
+lower_case_table_names=1 	\
+character-set-server=utf8 	\
+collation-server=utf8_general_ci' my.cnf
+
+sed	-i '$ a\[client]           	\
+default-charactor-set=utf8' my.cnf
+
 bin/mysqld_safe --user=mysql &
 
 if [ -e /etc/init.d/mysql.server ]; then
@@ -67,5 +82,3 @@ cp support-files/mysql.server /etc/init.d/mysql.server
 ######################################################
 
 echo "安装成功"
-
-#配置path
