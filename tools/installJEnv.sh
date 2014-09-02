@@ -86,11 +86,7 @@ cd maven
 tar zxvf $Z_DIR/apache-maven-3.2.1-bin.tar.gz -C $PWD
 ln -s apache-maven-3.2.1 mvn
 
-echo "开始安装mysql"
-echo "请确认本机中没有安装mysql或已卸载：y/n"
-
 sudo sed -i -e '/JAVA_HOME/d; /M2_HOME/d; /IDEA_HOME/d'  $ETC_PROFILE
-
 sudo sed -i '$ a\export JAVA_HOME=/usr/local/soft/java/jdk \
 export CLASSPATH=.:$JAVA_HOME/lib/tools.jar \
 export IDEA_HOME=/usr/local/soft/ideaIU/idea \
