@@ -68,7 +68,7 @@ lower_case_table_names=1 	\
 character-set-server=utf8 	\
 collation-server=utf8_general_ci' my.cnf
 
-sed	-i '$ a\[client]           	\
+sed	-i '$ a\[client] \
 default-charactor-set=utf8' my.cnf
 
 bin/mysqld_safe --user=mysql &
