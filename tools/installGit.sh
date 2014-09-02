@@ -34,6 +34,7 @@ echo "输入默认邮箱"
 read globalEmail
 git config --global user.name "$globalUser"
 git config --global user.email "$globalEmail"
+git config --global push.default simple
 
 echo "是否生成SSH Keys?[y/n]"
 read createKeys
