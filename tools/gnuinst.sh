@@ -16,10 +16,10 @@ is_ftp=`expr match $_LOC 'ftp://.*'`
 is_http=`expr match $_LOC 'http[s]\{0,1\}://.*'`
 
 
-echo $_F
-echo $_D
-echo $is_ftp
-echo $is_http
+#echo $_F
+#echo $_D
+#echo $is_ftp
+#echo $is_http
 cd /tmp
 
 if [ $is_ftp -gt 0 -o  $is_http -gt 0 ];then
@@ -33,9 +33,8 @@ if [ -e $_D ];then
 	echo "目录$_D 已存在，是否删除？[y/n]"
 	read delD
 	if [ 'y' == $delD ];then
+		echo "删除目录$_D"
 		rm -r $_D
-	else
-		exit 0
 	fi
 fi
 GZ=`expr match $_F '.*.gz'`
@@ -58,3 +57,6 @@ cd $_D
 ./configure
 make
 sudo make install
+echo "删除$_D"
+rm -rf $_D
+cd /tmp
