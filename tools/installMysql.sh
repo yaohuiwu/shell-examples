@@ -55,8 +55,12 @@ else
 	echo "用户mysql已存在"
 fi
 
-
-cd /usr/local/soft
+soft_dir=/usr/local/soft
+if [ ! -e $soft_dir ];then 
+	sudo mkdir -p $soft_dir
+	chmod 777 $soft_dir
+fi
+cd $soft_dir
 if [ -e "mysql" ] ; then
 	echo "删除$PWD/mysql"
 	sudo rm -rf ./mysql 
