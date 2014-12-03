@@ -4,6 +4,7 @@ use Getopt::Long;
 
 if((1+$#ARGV)<3){
 	say "usage: ./matrix.pl --r=3,5,7 --c=4 --f='matrix.file'";
+	say "author: yaohui.wu\@pekall.com at 2014-12-3.";
 	exit 0;
 }
 
