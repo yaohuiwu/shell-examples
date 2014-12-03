@@ -2,12 +2,18 @@
 use v5.14;
 use Getopt::Long;
 
+if((1+$#ARGV)<3){
+	say "usage: ./matrix.pl --r=3,5,7 --c=4 --f='matrix.file'";
+	exit 0;
+}
+
 my $file='';
-my $line_n='';
+my $rows='';
+my $col=1;
 
-GetOptions('l=s'=>\$line_n,'f=s'=>\$file);
+GetOptions('r=s'=>\$rows,'c=i'=>\$col,'f=s'=>\$file);
 
-my @line_ns=split(/,/,$line_n);
+my @line_ns=split(/,/,$rows);
 
 #say "f ".$file ;
 #say "l ".$line_n;
@@ -24,27 +30,17 @@ my @tmpb=();
 my @all_lines=<M_FILE>;
 close M_FILE;
 
-my $i=1;
-for my $line (@all_lines){
-	for my $j (@line_ns) {	
-   	 	if($i==$j){
-   			chomp($line);
-			#say $line;
-			my @tmpa=split(" ",$line);
-			#say $tmpa[3];
-			#$tmpb[++$#tmpb]=$tmpa[3];
-			if($#tmpa >=3){
-				push @tmpb,$tmpa[3];
-			}
-		}
-   }
-   $i++;
+for my $j (@line_ns) {
+	my $line = $all_lines[$j-1];
+	chomp($line);
+	#say $line;
+	my @tmpa=split(/\s+/,$line);
+	#say $tmpa[3];
+	#$tmpb[++$#tmpb]=$tmpa[3];
+	if($#tmpa >= ($col-1)){
+		push @tmpb,$tmpa[$col-1];
+	}
 }
-
-
 
 my $res=join(",",@tmpb);
 say $res;
-#for my $s (@tmpb){
-#	say $s;
-#}
