@@ -1,13 +1,6 @@
 #!/bin/bash
 
-a=""
-echo $a
-i=0
-while [ $i -lt 10 ]
-do
-	a=$a":"$i
+my_home=${MY_HOME:=/usr/local}
 
-  	let "i=i+1"
-done
 
-echo $a
+echo $my_home
