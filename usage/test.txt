@@ -1,0 +1,2 @@
+myName=foo
+myAge=20
