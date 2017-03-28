@@ -2,6 +2,8 @@
 
 #Print all the arguement using $* or $@
 f(){
+    echo "total arguement is $#"
+    echo `seq 1 $#`
     for arg in $@;do
         echo $arg
     done    
@@ -20,6 +22,11 @@ f2(){
 
 f3(){
  return 100; 
+}
+
+f4(){
+    v1="hello world"
+    eval "${1}=\"$v1\""
 }
 
 # Put your test code here.
@@ -41,3 +48,8 @@ echo "hello msg is ${!msg}. It should be empty now."
 
 f3
 echo $?
+
+msg='a1'
+f4 $msg
+
+echo "f4:${!msg}"
