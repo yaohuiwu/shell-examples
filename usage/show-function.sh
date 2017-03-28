@@ -53,3 +53,5 @@ msg='a1'
 f4 $msg
 
 echo "f4:${!msg}"
+echo "f4:${a1}"
+unset a1
